@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:28:56 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 18:46:56 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/01 20:07:14 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,20 @@ char	*get_path(char *str, char **paths)
 {
 	int		i;
 	char	*cheack;
+	char	*midl;
 
 	i = 0;
 	while (paths[i])
 	{
 		cheack = ft_strjoin(paths[i], "/");
-		cheack = ft_strjoin(cheack, str);
+		midl = ft_strjoin(cheack, str);
+		free(cheack);
+		cheack = midl;
 		if (access(cheack, X_OK) == 0)
 			return (cheack);
 		free(cheack);
 		i++;
 	}
-	free(str);
 	return (NULL);
 }
 
@@ -49,8 +51,8 @@ void	lstadd_back(t_cmd **lst, t_cmd *new, t_prj *prj)
 
 	if (!new)
 		return ;
-	new->cmd[0] = get_path(new->cmd[0], prj->paths);
-	if (!new->cmd[0])
+	new->name = get_path(new->cmd[0], prj->paths);
+	if (!new->name)
 	{
 		clean_cmd(&new, 1);
 		return ;
@@ -84,12 +86,15 @@ void	parse_cmd(t_prj *prj, char **argv, int size)
 
 	i = 2;
 	cmd = NULL;
-	while (!cmd)
+	while (!cmd && i < size - 1)
 	{
 		cmd = init_cmd(ft_split(argv[i++], ' '));
-		cmd->cmd[0] = get_path(cmd->cmd[0], prj->paths);
-		if (!cmd->cmd[0])
+		if (!cmd)
+			continue ;
+		cmd->name = get_path(cmd->cmd[0], prj->paths);
+		if (!cmd->name)
 		{
+			ft_printf("pipex: %s: %s", 2, cmd->cmd[0], NCMM);
 			clean_cmd(&cmd, 1);
 			cmd = NULL;
 		}

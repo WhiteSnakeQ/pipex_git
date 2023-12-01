@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 07:00:48 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 18:47:44 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/01 19:59:12 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@
 
 # define MALLOCFAIL "MALLOC FAIL\n"
 # define PIPEFAIL "PIPE FAIL\n"
-# define OPENERR "fileErr"
-# define CRFILE "Create file failed"
+# define CRFILE "Create file failed\n"
+# define NCMM "command not found\n"
+
 typedef struct s_cmd
 {
 	char			**cmd;
+	char			*name;
 	struct s_cmd	*next;
 }					t_cmd;
 
