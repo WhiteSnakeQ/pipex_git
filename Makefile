@@ -14,7 +14,7 @@ SRC			= main.c error.c init_obj.c parse.c delete_obj.c work_with_file.c
 SRCDIR		= ./project/pipex/
 
 SRCPRF		= ./project/printf/libftprintf.a
-SRCLIB		= ./project/LIBFT/libft.a
+SRCLIB		= ./project/libft/libft.a
 
 SRCGNL		= get_next_line.c get_next_line_utils.c
 SRCGNLDIR	= ./project/get_next_line/
