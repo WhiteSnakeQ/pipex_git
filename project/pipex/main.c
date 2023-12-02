@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 06:58:17 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 20:14:08 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/02 10:11:29 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**add_par(char **strs, char *str)
 	return (ret);
 }
 
-void	pipex(t_prj *prj, char **env, int mod)
+void	pipex(t_prj *prj, char **env, int i)
 {
 	pid_t	pid;
 
@@ -56,16 +56,17 @@ void	pipex(t_prj *prj, char **env, int mod)
 		catch_error(NULL, NULL);
 	if (pid == 0)
 	{
-		close(prj->pipe[0]);
 		dup2(prj->pipe[1], STDOUT_FILENO);
-		if (mod == 0)
-			prj->list_cmd->cmd = add_par(prj->list_cmd->cmd, prj->file_name);
+		if (i == 1)
+			dup2(prj->file1, STDIN_FILENO);
+		close(prj->pipe[0]);
 		execve(prj->list_cmd->name, prj->list_cmd->cmd, env);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		close(prj->pipe[1]);
-		dup2(prj->pipe[0], 0);
+		dup2(prj->pipe[0], STDIN_FILENO);
 		remove_cmd(prj);
 	}
 }
@@ -84,11 +85,12 @@ int	main(int argc, char **argv, char **env)
 	init_prj(prj, env);
 	parse_file_name(prj, argv[1]);
 	parse_cmd(prj, argv, argc);
+	i += prj->skip;
 	while (argc - 3 > i++)
 	{
 		if (!prj->list_cmd)
 			break ;
-		pipex(prj, env, i - 1);
+		pipex(prj, env, i);
 		if (i == 1 && prj->manual == 1)
 			unlink(prj->file_name);
 	}

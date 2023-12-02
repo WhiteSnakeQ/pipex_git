@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:21:44 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 20:14:02 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/02 10:12:15 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,15 @@ void	write_in_file(t_prj *prj, char *name2)
 		catch_error(NULL, name2);
 	}
 	dup2(prj->file2, prj->pipe[1]);
-	str = get_next_line(prj->pipe[0]);
-	while (str)
+	if (prj->error == EXIT_SUCCESS)
 	{
-		ft_printf("%s", prj->pipe[1], str);
-		free(str);
 		str = get_next_line(prj->pipe[0]);
+		while (str)
+		{
+			ft_printf("%s", prj->pipe[1], str);
+			free(str);
+			str = get_next_line(prj->pipe[0]);
+		}
 	}
 	close(prj->pipe[0]);
 	close(prj->pipe[1]);

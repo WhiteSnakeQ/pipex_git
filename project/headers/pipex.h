@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 07:00:48 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 19:59:12 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/02 10:06:37 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_prj
 	int				file2;
 	int				manual;
 	int				error;
+	int				skip;
 	char			*file_name;
 	char			**paths;
 	struct s_cmd	*list_cmd;

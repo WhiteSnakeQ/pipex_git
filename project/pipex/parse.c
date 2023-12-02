@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:28:56 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 20:07:14 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/02 10:09:50 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	lstadd_back(t_cmd **lst, t_cmd *new, t_prj *prj)
 	new->name = get_path(new->cmd[0], prj->paths);
 	if (!new->name)
 	{
+		prj->error = 1;
+		ft_printf("pipex: %s: %s", 2, new->cmd[0], NCMM);
 		clean_cmd(&new, 1);
 		return ;
 	}
@@ -88,12 +90,16 @@ void	parse_cmd(t_prj *prj, char **argv, int size)
 	cmd = NULL;
 	while (!cmd && i < size - 1)
 	{
+		prj->error = 0;
 		cmd = init_cmd(ft_split(argv[i++], ' '));
 		if (!cmd)
 			continue ;
 		cmd->name = get_path(cmd->cmd[0], prj->paths);
 		if (!cmd->name)
 		{
+			prj->error = 1;
+			if (i == 3)
+				prj->skip = 1;
 			ft_printf("pipex: %s: %s", 2, cmd->cmd[0], NCMM);
 			clean_cmd(&cmd, 1);
 			cmd = NULL;

@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:18:50 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 20:17:19 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/02 10:10:01 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_prj(t_prj *prj, char **env)
 	if (!prj->pipe)
 		catch_error(MALLOCFAIL, NULL);
 	prj->error = 0;
+	prj->skip = 0;
 	prj->manual = 0;
 	took_env(prj, env);
 }
