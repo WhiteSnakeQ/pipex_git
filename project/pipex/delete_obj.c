@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 06:58:17 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 20:01:44 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/01 20:17:00 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	clean_cmd(t_cmd **cmd, int i)
 		return ;
 	while ((*cmd)->cmd[i])
 		free((*cmd)->cmd[i++]);
+	if ((*cmd)->cmd)
+		free((*cmd)->cmd);
 	if ((*cmd)->name)
 		free((*cmd)->name);
 	free(*cmd);

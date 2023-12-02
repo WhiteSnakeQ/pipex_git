@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 06:58:17 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 20:03:37 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/01 20:14:08 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	pipex(t_prj *prj, char **env, int mod)
 	}
 	else
 	{
-		wait(NULL);
 		close(prj->pipe[1]);
 		dup2(prj->pipe[0], 0);
 		remove_cmd(prj);

@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:18:50 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 17:52:10 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/01 20:17:19 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_cmd	*init_cmd(char **text)
 	if (!cmd)
 		return (NULL);
 	cmd->next = NULL;
+	cmd->name = NULL;
 	cmd->cmd = text;
 	return (cmd);
 }

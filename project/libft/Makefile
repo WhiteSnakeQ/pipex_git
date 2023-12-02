@@ -6,7 +6,7 @@
 #    By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 01:07:43 by kreys             #+#    #+#              #
-#    Updated: 2023/11/29 14:58:15 by kreys            ###   ########.fr        #
+#    Updated: 2023/12/01 20:12:24 by kreys            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,6 @@ BSRCS		= ft_lstclear.c ft_lstdelone.c ft_lstadd_back.c ft_lstlast.c ft_lstsize.c
 
 NAME_F		= libft.a
 
-HEADER		= libft.h
-
 AR			= ar rc
 
 RM			= rm -f
@@ -42,7 +40,7 @@ CFLAGS		= -Wall -Wextra -Werror
 all:		${NAME_F} clean
 
 .c.o:
-			@${GCC} ${CFLAGS} -c -I ${HEADER} $< -o ${<:.c=.o}
+			@${GCC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME_F}:	${OBJ}
 			@${AR} ${NAME_F} ${OBJ}

@@ -6,7 +6,7 @@
 #    By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/31 01:07:43 by kreys             #+#    #+#              #
-#    Updated: 2023/11/28 09:15:04 by kreys            ###   ########.fr        #
+#    Updated: 2023/12/01 20:12:17 by kreys            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,6 @@ SRC			= aditional_func.c ft_printf.c print_type.c print_hex_address.c put_decima
 OBJ			= ${SRC:.c=.o}
 
 NAME_F		= libftprintf.a
-
-HEADER		= project_f.h
 
 AR			= ar rc
 
@@ -32,7 +30,7 @@ CFLAGS		= -Wall -Wextra -Werror
 all:		${NAME_F} clean
 
 .c.o:
-			@${GCC} ${CFLAGS} -c -I ${HEADER} $< -o ${<:.c=.o}
+			@${GCC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${NAME_F}:	${OBJ}
 			@${AR} ${NAME_F} ${OBJ}

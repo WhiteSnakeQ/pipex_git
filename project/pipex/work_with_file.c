@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 17:21:44 by kreys             #+#    #+#             */
-/*   Updated: 2023/12/01 18:47:16 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/01 20:14:02 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int	create_file(char *name)
 
 void	write_in_file(t_prj *prj, char *name2)
 {
-	int		i;
 	char	*str;
 
-	i = 0;
 	prj->file2 = open(name2, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (prj->file2 == -1)
 	{

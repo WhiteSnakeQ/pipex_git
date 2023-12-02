@@ -6,7 +6,7 @@
 /*   By: kreys <kirrill20030@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 14:45:07 by kreys             #+#    #+#             */
-/*   Updated: 2023/11/01 16:19:24 by kreys            ###   ########.fr       */
+/*   Updated: 2023/12/01 20:13:09 by kreys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ int	ft_atoi(const char *str)
 {
 	long		number_to_print;
 	int			minus;
-	int			play;
 
 	minus = 1;
 	number_to_print = 0;
 	while ((*str >= 9 && *str <= 13) || *str == 32)
 		str++;
-	play = check_string(&number_to_print, str, &minus);
+	check_string(&number_to_print, str, &minus);
 	if (minus == -1)
 		number_to_print = -number_to_print;
 	return ((int)number_to_print);
