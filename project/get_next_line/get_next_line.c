@@ -50,6 +50,7 @@ char	*read_file(char *full_str, int file)
 		free(string);
 		return (full_str);
 	}
+	string[status_f] = '\0';
 	full_str = strjoins(full_str, string, 0, status_f);
 	free(string);
 	if (check_new_line(full_str) == 1)

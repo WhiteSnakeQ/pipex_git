@@ -24,7 +24,7 @@ OBJ			= ${addprefix ${SRCDIR}, ${SRC:.c=.o}} ${SRCPRF} ${SRCLIB} ${OBJGNL}
 
 NAME		= pipex
 
-FLAGS		= -Wall -Wextra -Werror -fsanitize=address,undefined -g3
+FLAGS		= -g
 
 CC			= cc
 

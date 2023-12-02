@@ -57,8 +57,13 @@ void	pipex(t_prj *prj, char **env, int i)
 	if (pid == 0)
 	{
 		dup2(prj->pipe[1], STDOUT_FILENO);
-		if (i == 1)
+		if (i == 1 && prj->file1 != -1)
 			dup2(prj->file1, STDIN_FILENO);
+		else if (i == 1 && prj->file1 == -1)
+		{
+			clean_all(&prj);
+			exit(EXIT_FAILURE);
+		}
 		close(prj->pipe[0]);
 		execve(prj->list_cmd->name, prj->list_cmd->cmd, env);
 		exit(EXIT_FAILURE);
